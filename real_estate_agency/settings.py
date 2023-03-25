@@ -11,9 +11,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', [])
 
-SECRET_KEY = env.str('SECRET_KEY', 'REPLACE_ME')
+SECRET_KEY = env.str('SECRET_KEY')
 
-DEBUG = env.bool('DEBUG', True)
+DEBUG = env.bool('DEBUG')
 
 
 # Application definition
@@ -97,6 +97,6 @@ STATIC_URL = '/static/'
 
 DATABASES = {
     'default': dj_database_url.parse(
-        os.getenv('DATABASE', 'sqlite:///db.sqlite3')
+        os.getenv('DATABASE')
     ),
 }
