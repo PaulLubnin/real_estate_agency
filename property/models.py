@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
 from django.utils import timezone
+from phonenumber_field.modelfields import PhoneNumberField
 
 
 class Flat(models.Model):
@@ -13,6 +14,11 @@ class Flat(models.Model):
     owners_phonenumber = models.CharField(
         'Номер владельца',
         max_length=20
+    )
+    owner_pure_phonenumber = PhoneNumberField(
+        'Нормализованный номер владельца',
+        max_length=12,
+        blank=True
     )
     created_at = models.DateTimeField(
         'Когда создано объявление',
@@ -84,7 +90,8 @@ class Flat(models.Model):
     liked_by = models.ManyToManyField(
         User,
         related_name='liked_flats',
-        verbose_name='Кто поставил лайк'
+        verbose_name='Кто поставил лайк',
+        blank=True
     )
 
     def __str__(self):
