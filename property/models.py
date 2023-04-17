@@ -135,7 +135,8 @@ class Owner(models.Model):
 
     name = models.CharField(
         'ФИО владельца',
-        max_length=200
+        max_length=200,
+        db_index=True
     )
     owners_phonenumber = models.CharField(
         'Номер владельца',
@@ -146,10 +147,11 @@ class Owner(models.Model):
         max_length=12,
         blank=True
     )
-    flat = models.ManyToManyField(
+    flats = models.ManyToManyField(
         Flat,
         related_name='owners',
         verbose_name='Квартиры собственника',
+        db_index=True
     )
 
     def __str__(self):
