@@ -88,6 +88,12 @@ class Flat(models.Model):
         verbose_name = 'Квартира'
         verbose_name_plural = 'Квартиры'
 
+    def display_owners_phonenumber(self):
+        for owner in self.owners.all():
+            return owner.owner_pure_phonenumber
+
+    display_owners_phonenumber.short_description = 'Номер владельца'
+
 
 class Complaint(models.Model):
     """ Жалоба. """
