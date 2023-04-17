@@ -128,3 +128,33 @@ class Complaint(models.Model):
     class Meta:
         verbose_name = 'Жалоба'
         verbose_name_plural = 'Жалобы'
+
+
+class Owner(models.Model):
+    """ Собственник. """
+
+    name = models.CharField(
+        'ФИО владельца',
+        max_length=200
+    )
+    owners_phonenumber = models.CharField(
+        'Номер владельца',
+        max_length=20
+    )
+    owner_pure_phonenumber = PhoneNumberField(
+        'Нормализованный номер владельца',
+        max_length=12,
+        blank=True
+    )
+    flat = models.ManyToManyField(
+        Flat,
+        related_name='owners',
+        verbose_name='Квартиры собственника',
+    )
+
+    def __str__(self):
+        return f'{self.name} (id: {self.id})'
+
+    class Meta:
+        verbose_name = 'Собственник'
+        verbose_name_plural = 'Собственники'
