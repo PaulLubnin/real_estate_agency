@@ -90,7 +90,7 @@ class Flat(models.Model):
 
     def display_owners_phonenumber(self):
         for owner in self.owners.all():
-            return owner.owner_pure_phonenumber
+            return owner.pure_phone_number
 
     display_owners_phonenumber.short_description = 'Номер владельца'
 
@@ -131,11 +131,11 @@ class Owner(models.Model):
         max_length=200,
         db_index=True
     )
-    owners_phonenumber = models.CharField(
+    phone_number = models.CharField(
         'Номер владельца',
         max_length=20
     )
-    owner_pure_phonenumber = PhoneNumberField(
+    pure_phone_number = PhoneNumberField(
         'Нормализованный номер владельца',
         max_length=12,
         blank=True
